@@ -108,7 +108,7 @@ public class VeiculoService {
 | `@Value` (eager/`Provider`, fontes, tipos, boas práticas, anti-patterns) | [references/value.md](references/value.md) |
 | Erros globais | [references/controller-advice.md](references/controller-advice.md) |
 | AutoDD vs AutoDDL; **não** XML de Table em `datadictionary` se `autoDD = true` | [references/autodd.md](references/autodd.md) |
-| `@JoinColumns` / PK composta | [references/foreign-keys.md](references/foreign-keys.md) |
+| FK: quadro `@ManyToOne`/`@OneToOne` → `@JoinColumn(s)`; `@OneToMany` → `@Relationship`; PK composta | [references/foreign-keys.md](references/foreign-keys.md) |
 | SQL Oracle+MSSQL | [references/macros.md](references/macros.md) |
 | Filtro transversal antes do Finder | [references/before-load-listener.md](references/before-load-listener.md) |
 

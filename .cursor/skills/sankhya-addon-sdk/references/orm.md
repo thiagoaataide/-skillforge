@@ -49,16 +49,17 @@ public class ItemNota {
 
 O SDK documenta **três** relacionamentos. Cada um tem anotação e mapeamento de coluna **diferentes**. Não misture.
 
-| Cardinalidade | Anotação | Quem tem a FK | Como mapear a coluna |
-| --- | --- | --- | --- |
-| **Um-para-muitos** | `@OneToMany` | lado **muitos** (filho) | `relationship = {@Relationship(fromField, toField)}` |
-| **Muitos-para-um** | `@ManyToOne` | este lado | `@JoinColumn` ou `@JoinColumns` (**obrigatório**) |
-| **Um-para-um** | `@OneToOne` | o lado que guarda a FK | `@JoinColumn` ou `@JoinColumns` (**obrigatório**) |
+| Relacionamento | Mapeamento de colunas | Quem tem a FK |
+| --- | --- | --- |
+| `@ManyToOne` | `@JoinColumn` ou `@JoinColumns` (**obrigatório**) | este lado |
+| `@OneToOne` | `@JoinColumn` ou `@JoinColumns` (**obrigatório**) | o lado que guarda a FK |
+| `@OneToMany` | `relationship = {@Relationship(...)}` | lado **muitos** (filho) |
 
 Proibido em **qualquer** relacionamento: `@Column` no mesmo campo.  
 Proibido em `@OneToMany`: `@JoinColumn` / `@JoinColumns`.  
 `@ToString.Exclude` no lado inverso (Lombok) — evita `StackOverflowError`.  
-`description` em `@JoinColumn` é obrigatório com AutoDD.
+`description` em `@JoinColumn` é obrigatório com AutoDD.  
+PK composta, `@JoinColumns` e `@Relationship` com várias colunas: [foreign-keys.md](foreign-keys.md).
 
 ---
 
