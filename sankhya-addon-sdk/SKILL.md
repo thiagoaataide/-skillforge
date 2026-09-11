@@ -105,7 +105,7 @@ public class VeiculoService {
 | MapStruct (`@Mapper`), mapeamento DTO ↔ `@JapeEntity` | [references/mapstruct.md](references/mapstruct.md) |
 | Adaptadores nativos (`BooleanAdapter`, `DateAdapter`, …) e `@GlobalTypeAdapter` | [references/type-adapters.md](references/type-adapters.md) |
 | JUL/Log4J1 e logs remotos | [references/logging.md](references/logging.md) |
-| `@Value` eager/`Provider` lazy, `ENV_VAR` / `SYSTEM_PROPERTY` / `SANKHYA_PARAM` | [references/value.md](references/value.md) |
+| `@Value` (eager/`Provider`, fontes, tipos, boas práticas, anti-patterns) | [references/value.md](references/value.md) |
 | Erros globais | [references/controller-advice.md](references/controller-advice.md) |
 | Gerar dicionário a partir da entidade | [references/autodd.md](references/autodd.md) |
 | `@JoinColumns` / PK composta | [references/foreign-keys.md](references/foreign-keys.md) |
