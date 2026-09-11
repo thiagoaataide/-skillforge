@@ -2,7 +2,7 @@
 
 Doc: https://developer.sankhya.com.br/docs/camada-de-controller-controller
 
-`@Controller` é alias semântico de `@Service`: ponto de entrada da API interna. Só orquestra. Sem regra de negócio, sem acesso direto a repositório.
+`@Controller` é alias semântico de `@Service`: ponto de entrada da API interna. Só orquestra. Sem regra de negócio, sem acesso direto a repositório. Conversão DTO ↔ entidade: [mapstruct.md](mapstruct.md).
 
 ```java
 @Controller(serviceName = "EstoqueControllerSP")
