@@ -101,7 +101,7 @@ public class VeiculoService {
 | `@Inject`, `@Component`, `@Service`, ciclos | [references/dependency-injection.md](references/dependency-injection.md) |
 | `@Transactional`, `TransactionType` | [references/transactional.md](references/transactional.md) |
 | `@JapeEntity`, `@OneToMany` / `@ManyToOne` / `@OneToOne`, PK | [references/orm.md](references/orm.md) |
-| `JapeRepository`, `@Criteria`, `@NativeQuery`, paginação | [references/repository.md](references/repository.md) |
+| `JapeRepository`, retornos, `@Criteria`, `@NativeQuery`, `@Modifying` | [references/repository.md](references/repository.md) |
 | DTO ↔ entidade | [references/mapstruct.md](references/mapstruct.md) |
 | Gson/Jape de tipos custom (`ZonedDateTime`) | [references/type-adapters.md](references/type-adapters.md) |
 | JUL/Log4J1 e logs remotos | [references/logging.md](references/logging.md) |
