@@ -49,6 +49,17 @@ git commit -m "chore: atualiza skill sankhya-addon-sdk2"
 
 Edite a skill no repositório [sankhya-addon-sdk2](https://github.com/thiagoaataide/sankhya-addon-sdk2), não copie markdown para dentro do skillforge.
 
+## Publicar no GitHub (primeira vez)
+
+Este agent não tem chave SSH da sua conta GitHub. Na máquina em que `git@github.com` já funciona:
+
+```sh
+chmod +x scripts/push-github.sh
+./scripts/push-github.sh
+```
+
+Isso envia primeiro [sankhya-addon-sdk2](https://github.com/thiagoaataide/sankhya-addon-sdk2) e depois este catálogo. Se o submódulo ainda não estiver checked out, o script usa `vendor/sankhya-addon-sdk2.bundle`.
+
 ## Licença
 
 MIT (cada skill pode ter a própria; a Sankhya está em MIT).

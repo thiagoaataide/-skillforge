@@ -5,22 +5,33 @@ set -eu
 
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 SDK="$ROOT/skills/sankhya-addon-sdk2"
+BUNDLE="$ROOT/vendor/sankhya-addon-sdk2.bundle"
+SDK_REMOTE="git@github.com:thiagoaataide/sankhya-addon-sdk2.git"
+CATALOG_REMOTE="git@github.com:thiagoaataide/-skillforge.git"
 
-if [ ! -d "$SDK/.git" ] && [ ! -f "$SDK/.git" ]; then
-  echo "Submódulo ausente em $SDK"
-  exit 1
+if [ ! -f "$SDK/SKILL.md" ]; then
+  if [ ! -f "$BUNDLE" ]; then
+    echo "Nem o submódulo nem o bundle existem. Clone com --recurse-submodules ou copie vendor/sankhya-addon-sdk2.bundle."
+    exit 1
+  fi
+  echo "→ Restaura skill a partir do bundle"
+  rm -rf "$SDK"
+  git clone "$BUNDLE" "$SDK"
 fi
 
 echo "→ Push sankhya-addon-sdk2"
-git -C "$SDK" remote set-url origin git@github.com:thiagoaataide/sankhya-addon-sdk2.git
+git -C "$SDK" remote remove origin 2>/dev/null || true
+git -C "$SDK" remote add origin "$SDK_REMOTE"
 git -C "$SDK" push -u origin HEAD:main
 
 echo "→ Push skillforge"
 if git -C "$ROOT" remote get-url github >/dev/null 2>&1; then
-  git -C "$ROOT" remote set-url github git@github.com:thiagoaataide/-skillforge.git
+  git -C "$ROOT" remote set-url github "$CATALOG_REMOTE"
 else
-  git -C "$ROOT" remote add github git@github.com:thiagoaataide/-skillforge.git
+  git -C "$ROOT" remote add github "$CATALOG_REMOTE"
 fi
 git -C "$ROOT" push -u github HEAD:main
 
-echo "Pronto."
+echo "Pronto. Confira:"
+echo "  https://github.com/thiagoaataide/sankhya-addon-sdk2"
+echo "  https://github.com/thiagoaataide/-skillforge"
