@@ -1,84 +1,54 @@
-# Skill: SDK Sankhya (Addon Studio 2.0)
+# skillforge
 
-Habilidade de agent para **Cursor**, **Claude Code** e **Codex** implementar add-ons no **SDK Sankhya novo** (JAPE + Guice + Bean Validation + MapStruct), com arquivo de entrada único e referências carregadas sob demanda.
+Catálogo de **agent skills**. Cada skill vive no próprio repositório e entra aqui como *git submodule*.
 
-Baseada na documentação oficial:
+| Skill | Repositório | Submódulo |
+| --- | --- | --- |
+| SDK Sankhya Addon Studio 2.0 | [sankhya-addon-sdk2](https://github.com/thiagoaataide/sankhya-addon-sdk2) | `skills/sankhya-addon-sdk2` |
 
-- [Introdução ao SDK](https://developer.sankhya.com.br/docs/introducao-sdk-sankhya)
-- [Conceitos fundamentais](https://developer.sankhya.com.br/docs/conceitos-fundamentais)
-- [Getting started](https://developer.sankhya.com.br/docs/iniciando)
+## Clone
 
-Complementa (não substitui) o plugin [snk-devcenter/addon-studio](https://github.com/snk-devcenter/addon-studio) quando ele já estiver no projeto.
-
-## O que a skill faz
-
-- Exige `br.com.sankhya.studio:gradle-plugin` **≥ 2.0.18** no `build.gradle` antes de gerar código.
-- Impõe o framework novo: `@JapeEntity`, `@Repository`, `@Controller`/`@Service`, `@Inject` (Guice), `@Transactional`, `@Valid`.
-- Bloqueia legado (`DynamicVO`, `JapeSession.open`, `ServiceBean`) e JPA/Spring Data.
-- Abre só o arquivo de referência do componente em uso (controller, ORM, macros, AutoDD, …).
-
-## Estrutura
-
-```text
-sankhya-addon-sdk/
-├── SKILL.md                          # entrada (sempre)
-└── references/                       # sob demanda
-    ├── version-build.md
-    ├── controller.md
-    ├── bean-validation.md
-    ├── dependency-injection.md
-    ├── transactional.md
-    ├── orm.md
-    ├── repository.md
-    ├── mapstruct.md
-    ├── type-adapters.md
-    ├── logging.md
-    ├── value.md
-    ├── controller-advice.md
-    ├── autodd.md
-    ├── foreign-keys.md
-    ├── macros.md
-    └── before-load-listener.md
+```sh
+git clone --recurse-submodules git@github.com:thiagoaataide/-skillforge.git
+cd -- -skillforge
 ```
 
-Cópias iguais em `.cursor/skills/`, `.claude/skills/` e `.codex/skills/` para os três agents descobrirem o pacote neste repositório.
+Se o clone já foi feito sem submódulos:
 
-## Instalação em um projeto de addon
+```sh
+git submodule update --init --recursive
+```
 
-Copie a pasta `sankhya-addon-sdk/` (ou clone este repositório como submodule) para o diretório de skills do agent:
-
-| Agent | Destino no projeto do addon |
-| --- | --- |
-| Cursor | `.cursor/skills/sankhya-addon-sdk/` |
-| Claude Code | `.claude/skills/sankhya-addon-sdk/` |
-| Codex | `.codex/skills/sankhya-addon-sdk/` |
-
-Você pode copiar para os três. No Cursor, se a skill aparecer duplicada, mantenha só `.cursor/skills/`.
-
-Atalho:
+## Instalar a skill Sankhya num addon
 
 ```sh
 ./install.sh /caminho/do/seu-addon
 ```
 
-## Como usar
+Copia `skills/sankhya-addon-sdk2` para `.cursor/skills/sankhya-addon-sdk`, `.claude/skills/` e `.codex/skills/` no projeto destino.
 
-Linguagem natural:
+A skill sozinha (sem este catálogo):
 
-> Crie o controller, o repositório e a entidade JAPE desta tabela no padrão do SDK Sankhya 2.0.
+```sh
+git clone git@github.com:thiagoaataide/sankhya-addon-sdk2.git
+cd sankhya-addon-sdk2
+./install.sh /caminho/do/seu-addon
+```
 
-Invocação explícita:
+## Como usar no Cursor / Claude / Codex
 
-- Cursor / Claude: `/sankhya-addon-sdk`
-- Codex: `$sankhya-addon-sdk`
+Abra o **projeto do addon** (não precisa abrir o skillforge). No chat: `/sankhya-addon-sdk`.
 
-## Premissas
+## Atualizar o submódulo
 
-- Java 8, WildFly/EJB, encoding ISO-8859-1 quando o Studio exigir.
-- SQL portável Oracle + SQL Server via macros (`dbDate()`, `nullValue()`, …).
-- Prefixo de tabelas e pacote-base vêm do projeto; se não houver padrão, o agent pergunta.
-- AutoDD gera Table/NativeTable; menus, views e dashboards continuam no dicionário XML.
+```sh
+git submodule update --remote skills/sankhya-addon-sdk2
+git add skills/sankhya-addon-sdk2
+git commit -m "chore: atualiza skill sankhya-addon-sdk2"
+```
+
+Edite a skill no repositório [sankhya-addon-sdk2](https://github.com/thiagoaataide/sankhya-addon-sdk2), não copie markdown para dentro do skillforge.
 
 ## Licença
 
-MIT.
+MIT (cada skill pode ter a própria; a Sankhya está em MIT).

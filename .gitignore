@@ -4,3 +4,8 @@
 .idea/
 .gradle/
 build/
+
+# cópias geradas por ./install.sh (não versionar; a fonte é o submódulo)
+.cursor/skills/sankhya-addon-sdk/
+.claude/skills/sankhya-addon-sdk/
+.codex/skills/sankhya-addon-sdk/

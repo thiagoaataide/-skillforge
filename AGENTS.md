@@ -1,5 +1,5 @@
 # Codex / agents
 
-Ao implementar add-on Sankhya neste repositório ou em um projeto que instalou esta skill, siga `sankhya-addon-sdk/SKILL.md`.
+Catálogo skillforge. A skill Sankhya está no submódulo `skills/sankhya-addon-sdk2` (repo sankhya-addon-sdk2).
 
-Validar `br.com.sankhya.studio:gradle-plugin` ≥ 2.0.18 antes de gerar código. Carregar referências em `sankhya-addon-sdk/references/` só do componente em uso.
+Siga `skills/sankhya-addon-sdk2/SKILL.md`. Validar gradle-plugin ≥ 2.0.18. Referências em `skills/sankhya-addon-sdk2/references/` sob demanda.
