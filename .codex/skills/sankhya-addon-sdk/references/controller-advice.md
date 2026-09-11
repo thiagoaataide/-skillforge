@@ -2,7 +2,7 @@
 
 Doc: https://developer.sankhya.com.br/docs/11_controller_advice
 
-Um ponto só para erros de `@Service`/`@Controller`. Rollback automático da transação ativa.
+Um ponto só para erros de `@Controller`. Rollback automático da transação ativa.
 
 ```java
 @ControllerAdvice

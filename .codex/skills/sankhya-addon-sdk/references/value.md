@@ -2,7 +2,7 @@
 
 Doc: https://developer.sankhya.com.br/docs/inje%C3%A7%C3%A3o-de-valores-value
 
-Não use `MGECoreParameter.getParameter`, `System.getenv` nem `Integer.parseInt` de config no método. Injete no campo de um `@Component` / `@Service` / `@Controller`. Campo **não** pode ser `final`. Classe **não** pode ser criada com `new`.
+Não use `MGECoreParameter.getParameter`, `System.getenv` nem `Integer.parseInt` de config no método. Injete no campo de um `@Component` / `@Controller`. Campo **não** pode ser `final`. Classe **não** pode ser criada com `new`.
 
 `type` e `defaultValue` são **obrigatórios**. Informe `value` **ou** `param` (se os dois existirem, `param` vence).
 
@@ -339,11 +339,11 @@ public class EmailConfig {
 
 ## Exemplos para gerar código
 
-### Pedido (eager + lazy no mesmo service)
+### Pedido (eager + lazy no mesmo controller)
 
 ```java
-@Service(serviceName = "PedidoServiceSP")
-public class PedidoService {
+@Controller(serviceName = "PedidoControllerSP")
+public class PedidoController {
 
     @Value(value = "server.port", type = ValueType.SYSTEM_PROPERTY, defaultValue = "8080")
     private Integer serverPort;
@@ -367,8 +367,8 @@ public class PedidoService {
 ### Feature flags (lazy + `SANKHYA_PARAM`)
 
 ```java
-@Service(serviceName = "PedidoServiceSP")
-public class PedidoService {
+@Controller(serviceName = "PedidoControllerSP")
+public class PedidoController {
 
     @Value(param = "VALIDACAO_AVANCADA_ATIVA", type = ValueType.SANKHYA_PARAM, defaultValue = "false")
     private Provider<Boolean> validacaoAvancadaAtiva;
@@ -380,7 +380,7 @@ public class PedidoService {
     private final CalculadoraImpostoV2 calculadoraV2;
 
     @Inject
-    public PedidoService(ValidadorAvancado validadorAvancado, CalculadoraImpostoV2 calculadoraV2) {
+    public PedidoController(ValidadorAvancado validadorAvancado, CalculadoraImpostoV2 calculadoraV2) {
         this.validadorAvancado = validadorAvancado;
         this.calculadoraV2 = calculadoraV2;
     }

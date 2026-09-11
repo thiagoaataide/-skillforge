@@ -2,7 +2,7 @@
 
 Doc: https://developer.sankhya.com.br/docs/controle-transacional
 
-`@Transactional` só em método **público** de `@Service`/`@Component`/`@Controller`. Self-invocation (método da mesma classe) **não** abre transação.
+`@Transactional` só em método **público** de `@Controller`/`@Component`. Self-invocation (método da mesma classe) **não** abre transação.
 
 ```java
 import br.com.sankhya.studio.transaction.TransactionType;

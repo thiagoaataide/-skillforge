@@ -5,12 +5,12 @@ Doc: https://developer.sankhya.com.br/docs/injecao-de-dependencias
 Use **`com.google.inject.Inject`**. `javax.inject.Inject` está errado neste SDK.
 
 ```java
-@Service(serviceName = "PedidoServiceSP")
-public class PedidoService {
+@Controller(serviceName = "PedidoControllerSP")
+public class PedidoController {
     private final PedidoBusinessService businessService;
 
     @Inject
-    public PedidoService(PedidoBusinessService businessService) {
+    public PedidoController(PedidoBusinessService businessService) {
         this.businessService = businessService;
     }
 
@@ -37,11 +37,11 @@ public class PedidoBusinessService {
 
 | Anotação | Papel |
 | --- | --- |
-| `@Controller` / `@Service` | entrada HTTP (`serviceName`) |
+| `@Controller` | entrada HTTP (`serviceName` `*ControllerSP`). Não use o alias `@Service` em código novo. Ver [controller.md](controller.md) |
 | `@Job` | agendamento |
 | `@Repository` | persistência (interface) |
 | `@Component` | regra, validator, helper |
 
 Um único construtor com `@Inject`. Dependências `final`. Sem `new` de tipo gerenciado. Ciclo A↔B falha no startup (fail-fast) — quebre o ciclo.
 
-Não misture `@Component` em classe que já tem `@Controller`/`@Service`.
+Não misture `@Component` em classe que já tem `@Controller`.

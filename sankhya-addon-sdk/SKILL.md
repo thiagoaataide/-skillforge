@@ -35,7 +35,7 @@ Fonte canônica: [Introdução ao SDK](https://developer.sankhya.com.br/docs/int
 Camadas:
 
 ```
-@Controller / @Service (entrada, serviceName *SP)
+@Controller (entrada HTTP, serviceName *ControllerSP)  — não o alias @Service
     → @Component (regra de negócio)
         → @Repository (persistência)
             → @JapeEntity (tabela)
@@ -64,29 +64,28 @@ DTO + MapStruct no controller; entidade nunca sai na API.
 4. DTO de request com Bean Validation + DTO de response.
 5. Mapper MapStruct (`componentModel = "cdi"`).
 6. `@Component` com a regra.
-7. `@Controller(serviceName = "...SP")` só orquestra.
+7. `@Controller(serviceName = "...ControllerSP")` só orquestra — **não** use o alias `@Service`. Ver [references/controller.md](references/controller.md).
 8. `@ControllerAdvice` para erros — nunca `try/catch` no controller.
-9. Teste o service com mock do repositório.
+9. Teste o controller com mock das dependências.
 
-Snippet mínimo (getting started):
+Snippet mínimo:
 
 ```java
-@Service(serviceName = "VeiculoServiceSP")
-public class VeiculoService {
+@Controller(serviceName = "VeiculoControllerSP")
+public class VeiculoController {
     private final VeiculoRepository repository;
+    private final VeiculoMapper mapper;
 
     @Inject
-    public VeiculoService(VeiculoRepository repository) {
+    public VeiculoController(VeiculoRepository repository, VeiculoMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     @Transactional
-    public Long cadastrar(@Valid VeiculoDTO dto) {
-        Veiculo veiculo = new Veiculo();
-        veiculo.setPlaca(dto.getPlaca());
-        veiculo.setAtivo(dto.isAtivo());
-        repository.save(veiculo);
-        return veiculo.getId();
+    public VeiculoResponseDTO cadastrar(@Valid VeiculoRequestDTO dto) {
+        Veiculo salvo = repository.save(mapper.toEntity(dto));
+        return mapper.toResponse(salvo);
     }
 }
 ```
@@ -96,9 +95,9 @@ public class VeiculoService {
 | Tarefa | Arquivo |
 | --- | --- |
 | `build.gradle`, plugin, AutoDD/AutoDDL, appKey | [references/version-build.md](references/version-build.md) |
-| Endpoint / `serviceName` / DTO de API | [references/controller.md](references/controller.md) |
+| `@Controller` (não alias `@Service`), padrão de orquestração, envelope JSON, `transactionType` | [references/controller.md](references/controller.md) |
 | `@NotNull`, `@Digits`, `@AssertTrue`, `@Valid` | [references/bean-validation.md](references/bean-validation.md) |
-| `@Inject`, `@Component`, `@Service`, ciclos | [references/dependency-injection.md](references/dependency-injection.md) |
+| `@Inject`, `@Component`, ciclos (entrada HTTP = `@Controller`) | [references/dependency-injection.md](references/dependency-injection.md) |
 | `@Transactional`, `TransactionType` | [references/transactional.md](references/transactional.md) |
 | `@JapeEntity`, `@OneToMany` / `@ManyToOne` / `@OneToOne`, PK | [references/orm.md](references/orm.md) |
 | `JapeRepository`, retornos, `@Criteria`, `@NativeQuery`, `@Modifying` | [references/repository.md](references/repository.md) |
@@ -121,6 +120,7 @@ public class VeiculoService {
 | `javax.persistence.*` / Spring Data | APIs `br.com.sankhya.studio.*` |
 | `new VeiculoRepository()` | `@Inject` no construtor |
 | Entidade na response do controller | DTO + MapStruct |
+| `@Service(serviceName = "...")` em código novo | `@Controller(serviceName = "...ControllerSP")` |
 | Lógica de negócio no `@Controller` | `@Component` |
 | `try/catch` no controller | `@ControllerAdvice` |
 | `javax.inject.Inject` | `com.google.inject.Inject` |

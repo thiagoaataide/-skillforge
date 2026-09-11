@@ -2,7 +2,7 @@
 
 Doc: https://developer.sankhya.com.br/docs/bean-validation
 
-JSR 303/380. Ativa só com `@Valid` no parâmetro do `@Service` / `@Controller`. Falha → SDK lança **antes** da lógica. Valide no **DTO de entrada**. Sempre passe `message` em português, específica do campo. Combine anotações no mesmo campo.
+JSR 303/380. Ativa só com `@Valid` no parâmetro do `@Controller`. Falha → SDK lança **antes** da lógica. Valide no **DTO de entrada**. Sempre passe `message` em português, específica do campo. Combine anotações no mesmo campo.
 
 ```java
 @Transactional
