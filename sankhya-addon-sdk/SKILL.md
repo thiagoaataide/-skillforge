@@ -59,7 +59,7 @@ DTO + MapStruct no controller; entidade nunca sai na API.
 ## 3. Fluxo padrão (CRUD)
 
 1. Entidade `@JapeEntity` (e PK composta com `@Embeddable` se preciso).
-2. Se AutoDD estiver ligado: o XML de Table/NativeTable é gerado no build. Views, menus, dashboards e telas **ainda** são XML manual no dicionário.
+2. **AutoDD** (`autoDD = true`): Table/NativeTable saem da `@JapeEntity` no build — **não** gere XML em `datadictionary/` para essa tabela. Views, menus, dashboards e telas **ainda** são XML manual. Ver [references/autodd.md](references/autodd.md).
 3. Interface `@Repository`.
 4. DTO de request com Bean Validation + DTO de response.
 5. Mapper MapStruct (`componentModel = "cdi"`).
@@ -107,7 +107,7 @@ public class VeiculoService {
 | JUL/Log4J1 e logs remotos | [references/logging.md](references/logging.md) |
 | `@Value` (eager/`Provider`, fontes, tipos, boas práticas, anti-patterns) | [references/value.md](references/value.md) |
 | Erros globais | [references/controller-advice.md](references/controller-advice.md) |
-| Gerar dicionário a partir da entidade | [references/autodd.md](references/autodd.md) |
+| AutoDD vs AutoDDL; **não** XML de Table em `datadictionary` se `autoDD = true` | [references/autodd.md](references/autodd.md) |
 | `@JoinColumns` / PK composta | [references/foreign-keys.md](references/foreign-keys.md) |
 | SQL Oracle+MSSQL | [references/macros.md](references/macros.md) |
 | Filtro transversal antes do Finder | [references/before-load-listener.md](references/before-load-listener.md) |
