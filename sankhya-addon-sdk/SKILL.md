@@ -103,7 +103,7 @@ public class VeiculoService {
 | `@JapeEntity`, `@OneToMany` / `@ManyToOne` / `@OneToOne`, PK | [references/orm.md](references/orm.md) |
 | `JapeRepository`, retornos, `@Criteria`, `@NativeQuery`, `@Modifying` | [references/repository.md](references/repository.md) |
 | MapStruct (`@Mapper`), mapeamento DTO ↔ `@JapeEntity` | [references/mapstruct.md](references/mapstruct.md) |
-| Gson/Jape de tipos custom (`ZonedDateTime`) | [references/type-adapters.md](references/type-adapters.md) |
+| Adaptadores nativos (`BooleanAdapter`, `DateAdapter`, …) e `@GlobalTypeAdapter` | [references/type-adapters.md](references/type-adapters.md) |
 | JUL/Log4J1 e logs remotos | [references/logging.md](references/logging.md) |
 | `@Value`, parâmetros Sankhya | [references/value.md](references/value.md) |
 | Erros globais | [references/controller-advice.md](references/controller-advice.md) |
