@@ -97,7 +97,7 @@ public class VeiculoService {
 | --- | --- |
 | `build.gradle`, plugin, AutoDD/AutoDDL, appKey | [references/version-build.md](references/version-build.md) |
 | Endpoint / `serviceName` / DTO de API | [references/controller.md](references/controller.md) |
-| `@NotNull`, `@Valid`, mensagens | [references/bean-validation.md](references/bean-validation.md) |
+| `@NotNull`, `@Digits`, `@AssertTrue`, `@Valid` | [references/bean-validation.md](references/bean-validation.md) |
 | `@Inject`, `@Component`, `@Service`, ciclos | [references/dependency-injection.md](references/dependency-injection.md) |
 | `@Transactional`, `TransactionType` | [references/transactional.md](references/transactional.md) |
 | `@JapeEntity`, relacionamentos, PK | [references/orm.md](references/orm.md) |
