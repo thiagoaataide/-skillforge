@@ -4,13 +4,13 @@ Catálogo de **agent skills**. Cada skill vive no próprio repositório e entra 
 
 | Skill | Repositório | Submódulo |
 | --- | --- | --- |
-| SDK Sankhya Addon Studio 2.0 | [sankhya-addon-sdk2](https://github.com/thiagoaataide/sankhya-addon-sdk2) | `skills/sankhya-addon-sdk2` |
+| SDK Sankhya Addon Studio 2.0 | [sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2) | `skills/sankhya-addon-sdk2` |
 
 ## Clone
 
 ```sh
-git clone --recurse-submodules git@github.com:thiagoaataide/-skillforge.git
-cd -- -skillforge
+git clone --recurse-submodules git@github.com:GRUPO-GET/skillforge.git
+cd skillforge
 ```
 
 Se o clone já foi feito sem submódulos:
@@ -30,7 +30,7 @@ Copia `skills/sankhya-addon-sdk2` para `.cursor/skills/sankhya-addon-sdk`, `.cla
 A skill sozinha (sem este catálogo):
 
 ```sh
-git clone git@github.com:thiagoaataide/sankhya-addon-sdk2.git
+git clone git@github.com:GRUPO-GET/sankhya-addon-sdk2.git
 cd sankhya-addon-sdk2
 ./install.sh /caminho/do/seu-addon
 ```
@@ -47,18 +47,23 @@ git add skills/sankhya-addon-sdk2
 git commit -m "chore: atualiza skill sankhya-addon-sdk2"
 ```
 
-Edite a skill no repositório [sankhya-addon-sdk2](https://github.com/thiagoaataide/sankhya-addon-sdk2), não copie markdown para dentro do skillforge.
+Edite a skill no repositório [sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2), não copie markdown para dentro do skillforge.
 
-## Publicar no GitHub (primeira vez)
+## Remotes (publicação)
 
-Este agent não tem chave SSH da sua conta GitHub. Na máquina em que `git@github.com` já funciona:
+| Remote | Repositório |
+| --- | --- |
+| `grupo-get` | `git@github.com:GRUPO-GET/skillforge.git` |
+| Submódulo `origin` | `git@github.com:GRUPO-GET/sankhya-addon-sdk2.git` |
+
+Push (máquina com SSH no GitHub):
 
 ```sh
 chmod +x scripts/push-github.sh
 ./scripts/push-github.sh
 ```
 
-Isso envia primeiro [sankhya-addon-sdk2](https://github.com/thiagoaataide/sankhya-addon-sdk2) e depois este catálogo. Se o submódulo ainda não estiver checked out, o script usa `vendor/sankhya-addon-sdk2.bundle`.
+Se o submódulo não estiver checked out, o script usa `vendor/sankhya-addon-sdk2.bundle`.
 
 ## Licença
 
