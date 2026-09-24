@@ -1,10 +1,13 @@
 # skillforge
 
-Catálogo de **agent skills**. Cada skill vive no próprio repositório e entra aqui como *git submodule*.
+Catálogo de **agent skills** para addons Sankhya e frentes relacionadas (Cursor, Claude Code, Codex).
 
-| Skill | Repositório | Submódulo |
+| Pacote | Repositório | Caminho no catálogo |
 | --- | --- | --- |
-| SDK Sankhya Addon Studio 2.0 | [sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2) | `skills/sankhya-addon-sdk2` |
+| SDK GET (entrada + doc expandida) | [GRUPO-GET/sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2) | `skills/sankhya-addon-sdk2` |
+| Addon Studio DevCenter (25 skills + 6 agents) | [snk-devcenter/addon-studio](https://github.com/snk-devcenter/addon-studio) | `external/addon-studio` |
+
+**Total:** 26 skills + 6 agents após `./install.sh`. Detalhes e “quando usar qual”: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md).
 
 ## Clone
 
@@ -13,58 +16,56 @@ git clone --recurse-submodules git@github.com:GRUPO-GET/skillforge.git
 cd skillforge
 ```
 
-Se o clone já foi feito sem submódulos:
+Sem submódulos no clone:
 
 ```sh
 git submodule update --init --recursive
 ```
 
-## Instalar a skill Sankhya num addon
+## Instalar no addon (ou global)
 
 ```sh
+chmod +x install.sh
 ./install.sh /caminho/do/seu-addon
+# global Cursor/Claude/Codex na sua máquina:
+./install.sh ~
 ```
 
-Copia `skills/sankhya-addon-sdk2` para `.cursor/skills/sankhya-addon-sdk`, `.claude/skills/` e `.codex/skills/` no projeto destino.
+Copia para `.cursor/skills/`, `.claude/skills/`, `.codex/skills/`:
 
-A skill sozinha (sem este catálogo):
+- `sankhya-addon-sdk` (GET)
+- 25 pastas do [addon-studio](https://github.com/snk-devcenter/addon-studio) (`entity`, `database`, `retrofit`, `mapstruct`, …)
 
-```sh
-git clone git@github.com:GRUPO-GET/sankhya-addon-sdk2.git
-cd sankhya-addon-sdk2
-./install.sh /caminho/do/seu-addon
-```
+E agents para `.cursor/agents/`, `.claude/agents/`, `.codex/agents/` (Codex: `.toml`).
 
-## Como usar no Cursor / Claude / Codex
+## Uso rápido
 
-Abra o **projeto do addon** (não precisa abrir o skillforge). No chat: `/sankhya-addon-sdk`.
-
-## Atualizar o submódulo
-
-```sh
-git submodule update --remote skills/sankhya-addon-sdk2
-git add skills/sankhya-addon-sdk2
-git commit -m "chore: atualiza skill sankhya-addon-sdk2"
-```
-
-Edite a skill no repositório [sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2), não copie markdown para dentro do skillforge.
-
-## Remotes (publicação)
-
-| Remote | Repositório |
+| Agent | Invocação |
 | --- | --- |
-| `grupo-get` | `git@github.com:GRUPO-GET/skillforge.git` |
-| Submódulo `origin` | `git@github.com:GRUPO-GET/sankhya-addon-sdk2.git` |
+| GET SDK | `/sankhya-addon-sdk` ou pedido em linguagem natural “padrão SDK 2.0” |
+| Studio | `/entity`, `/database`, … ou Codex `$controller` |
+| Especialista | “Use o entity-architect para …” |
 
-Push (máquina com SSH no GitHub):
+## Atualizar
 
 ```sh
-chmod +x scripts/push-github.sh
+git pull
+git submodule update --init --recursive
+git submodule update --remote skills/sankhya-addon-sdk2
+git submodule update --remote external/addon-studio
+./install.sh /caminho/do/seu-addon
+```
+
+Edite a skill GET no repo **sankhya-addon-sdk2**. Skills DevCenter: upstream **addon-studio** (submódulo).
+
+## Publicar (maintainers)
+
+```sh
 ./scripts/push-github.sh
 ```
 
-Se o submódulo não estiver checked out, o script usa `vendor/sankhya-addon-sdk2.bundle`.
+Remotes: `grupo-get` → GRUPO-GET/skillforge; espelho `thiago` → thiagoaataide/-skillforge (se configurado).
 
 ## Licença
 
-MIT (cada skill pode ter a própria; a Sankhya está em MIT).
+MIT (catálogo). Respeite licenças dos submódulos (addon-studio MIT).
