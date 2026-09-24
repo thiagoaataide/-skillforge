@@ -1,9 +1,9 @@
 # Codex / agents
 
-Catálogo **skillforge** (GET + DevCenter addon-studio).
+Catálogo **skillforge** → submódulo **sankhya-addon-sdk2** (router GET + Studio + agents).
 
-1. **SDK GET** — leia `skills/sankhya-addon-sdk2/SKILL.md` e `references/` sob demanda. Gradle-plugin ≥ 2.0.18.
-2. **Skills granulares** — após `./install.sh`, use pastas em `.codex/skills/` (ou invoque `$entity`, `$database`, …). Lista: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md).
-3. **Sub-agents** — `.codex/agents/*.toml` (entity-architect, dbscript-builder, …).
+1. **Router GET** — `skills/sankhya-addon-sdk2/SKILL.md` e `references/` sob demanda. Gradle-plugin ≥ 2.0.18. §6 mapeia skills Studio.
+2. **Skills granulares** — `skills/sankhya-addon-sdk2/skills/studio/` (ou após `./install.sh`, `.codex/skills/`). Lista: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md).
+3. **Sub-agents** — `skills/sankhya-addon-sdk2/agents/addon-studio/codex/*.toml`.
 
-No repositório skillforge (sem install): `skills/sankhya-addon-sdk2` (submódulo) e `vendor/addon-studio/` (cópia).
+Arquitetura opção B: [skills/sankhya-addon-sdk2/ARCHITECTURE.md](skills/sankhya-addon-sdk2/ARCHITECTURE.md).

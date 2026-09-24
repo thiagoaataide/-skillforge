@@ -1,13 +1,14 @@
 # Catálogo de skills (skillforge)
 
-Duas fontes complementares — **não** duplicam o mesmo papel.
+Uma fonte no submódulo **[sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2)** — router GET + DevCenter incorporado.
 
-| Fonte | Onde | Quantidade | Papel |
+| Camada | Instalado como | Quantidade | Papel |
 | --- | --- | --- | --- |
-| **GET** [sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2) | `skills/sankhya-addon-sdk2` | 1 skill (`sankhya-addon-sdk`) + `references/` | Entrada única SDK Addon Studio **2.0.18+**: AutoDD, `@Controller`, ORM, repositório, doc oficial expandida (ex.: sub-abas nativas) |
-| **DevCenter** [addon-studio](https://github.com/snk-devcenter/addon-studio) | `vendor/addon-studio/` (**incorporado**) | 25 skills + 6 agents | Skills granulares (XML, dbscript, Retrofit, JSP, jobs, …) |
+| **Router GET** | `sankhya-addon-sdk` | 1 skill + `references/` | SDK **2.0.18+**, AutoDD, `@Controller`, doc oficial, sub-abas nativas |
+| **Studio** | nome da pasta (`entity`, `database`, …) | 25 skills | XML, dbscript, Retrofit, JSP, jobs, … |
+| **Agents** | `.md` / `.toml` em `agents/` | 6 | Multi-artefato |
 
-Total instalado no addon: **26 skills** + **6 agents**.
+Total no addon: **26 skills** + **6 agents**. Sobreposição: **opção B (router)** — skills Studio apontam para `references/`; ver `skills/sankhya-addon-sdk2/ARCHITECTURE.md`.
 
 ## Quando usar qual
 
@@ -15,7 +16,7 @@ Total instalado no addon: **26 skills** + **6 agents**.
 | --- | --- |
 | CRUD SDK novo, AutoDD, `@Controller` vs `@Service`, envelope JSON | `sankhya-addon-sdk` |
 | Sub-aba filha em tela nativa (`parentInstance`, `TGFTOP`) | `sankhya-addon-sdk` → `references/native-child-tabs.md` |
-| XML dicionário, tela cadastral, `datadictionary/` | `data-dictionary` (addon-studio) |
+| XML dicionário, tela cadastral, `datadictionary/` | `data-dictionary` |
 | Dbscript dual Oracle/MSSQL versionado | `database` + agent `dbscript-builder` |
 | Trio entidade + XML + migration de uma vez | agent `entity-architect` |
 | Retrofit, OkHttp, API externa | `retrofit` |
@@ -23,17 +24,17 @@ Total instalado no addon: **26 skills** + **6 agents**.
 | HTML5 / AngularJS no Om | `sankhya-js` |
 | JSP no addon | `jsp` |
 | Action button, callback, business rule, job | skills homônimas |
-| Setup `docs/ADDON.md` + `CLAUDE.md` | `init` (addon-studio) |
+| Setup `docs/ADDON.md` + `CLAUDE.md` | `init` |
 
-Sobreposição (`entity`, `controller`, `mapstruct`, …): addon-studio = fluxo Studio/plugin; GET = referências longas alinhadas à documentação developer.sankhya.com.br. Em dúvida no addon GET, abra **sankhya-addon-sdk** primeiro; use a skill granular para o artefato específico (XML, dbscript, front).
+Sobreposição (`entity`, `controller`, …): leia a **reference GET** via `sankhya-addon-sdk` e a **skill Studio** granular; a Studio não contradiz a reference.
 
-## Skills addon-studio (25)
+## Skills Studio (25)
 
 `action-button`, `before-load-listener`, `build`, `business-rule`, `callback`, `controller-advice`, `controller`, `database`, `data-dictionary`, `dependency-injection`, `encoding`, `entity`, `init`, `job`, `jsp`, `listener`, `macros`, `mapstruct`, `repository`, `retrofit`, `sankhya-js`, `sankhya-utils`, `test`, `type-adapter`, `value`
 
-Invocação Claude: `/entity`, `/database`, … (nome da pasta). Codex: `$entity`. Cursor: pasta em `.cursor/skills/entity/`.
+Invocação Claude: `/entity`, `/database`, … Cursor/Codex: pasta em `.cursor/skills/entity/` ou `$entity`.
 
-## Agents addon-studio (6)
+## Agents (6)
 
 | Agent | Uso |
 | --- | --- |
@@ -44,12 +45,11 @@ Invocação Claude: `/entity`, `/database`, … (nome da pasta). Codex: `$entity
 | `addon-reviewer` | Revisão de padrões |
 | `troubleshooter` | Deploy, Guice, build |
 
-Instalados em `.cursor/agents/`, `.claude/agents/`, `.codex/agents/` (Codex: `.toml`).
-
 ## Atualizar
 
 ```sh
 git submodule update --remote skills/sankhya-addon-sdk2
-# addon-studio: atualizar cópia em vendor/ — ver vendor/addon-studio/README.md
 ./install.sh /caminho/do/addon   # ou ~
 ```
+
+Upstream DevCenter: `skills/sankhya-addon-sdk2/scripts/sync-addon-studio.sh` (commit no repo sdk2, depois gitlink aqui).

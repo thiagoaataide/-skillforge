@@ -4,10 +4,9 @@ Catálogo de **agent skills** para addons Sankhya (Cursor, Claude Code, Codex).
 
 | Pacote | Origem | No skillforge |
 | --- | --- | --- |
-| SDK GET | [GRUPO-GET/sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2) | **Submódulo** `skills/sankhya-addon-sdk2` |
-| Addon Studio DevCenter | [snk-devcenter/addon-studio](https://github.com/snk-devcenter/addon-studio) | **Cópia incorporada** em `vendor/addon-studio/` (25 skills + 6 agents) |
+| SDK GET + DevCenter | [GRUPO-GET/sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2) | **Submódulo** `skills/sankhya-addon-sdk2` (router + 25 skills Studio + 6 agents) |
 
-A cópia do addon-studio traz atribuição em [vendor/addon-studio/README.md](vendor/addon-studio/README.md) e não depende do repo público estar online. **Total instalado:** 26 skills + 6 agents. Catálogo: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md).
+**Total instalado:** 26 skills + 6 agents. Catálogo de uso: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md). Arquitetura router (opção B): submódulo → [ARCHITECTURE.md](skills/sankhya-addon-sdk2/ARCHITECTURE.md).
 
 ## Clone
 
@@ -20,7 +19,7 @@ git submodule update --init skills/sankhya-addon-sdk2
 ## Instalar
 
 ```sh
-chmod +x install.sh
+chmod +x install.sh skills/sankhya-addon-sdk2/install.sh
 ./install.sh /caminho/do/seu-addon
 # ou global:
 ./install.sh ~
@@ -35,8 +34,8 @@ git submodule update --remote skills/sankhya-addon-sdk2
 ./install.sh /caminho/do/seu-addon
 ```
 
-Para refrescar a cópia DevCenter a partir do GitHub público, siga [vendor/addon-studio/README.md](vendor/addon-studio/README.md).
+Para refrescar addon-studio upstream, rode `./skills/sankhya-addon-sdk2/scripts/sync-addon-studio.sh` **dentro do submódulo**, commit no repo sdk2 e atualize o gitlink no skillforge.
 
 ## Licença
 
-MIT (catálogo). Addon Studio incorporado: MIT — ver `vendor/addon-studio/LICENSE.upstream`.
+MIT (catálogo). Conteúdo DevCenter: MIT — ver `skills/sankhya-addon-sdk2/third-party/addon-studio/`.

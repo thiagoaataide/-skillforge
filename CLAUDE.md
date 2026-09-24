@@ -2,8 +2,8 @@
 
 Catálogo skillforge.
 
-- SDK GET: `skills/sankhya-addon-sdk2/SKILL.md` (validar gradle-plugin ≥ 2.0.18).
-- Addon Studio DevCenter: **cópia** em `vendor/addon-studio/` (origem [snk-devcenter/addon-studio](https://github.com/snk-devcenter/addon-studio)).
-- Índice e quando usar cada uma: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md).
+- Router GET: `skills/sankhya-addon-sdk2/SKILL.md` (gradle-plugin ≥ 2.0.18) + `references/`.
+- Addon Studio: `skills/sankhya-addon-sdk2/skills/studio/` (incorporado de [snk-devcenter/addon-studio](https://github.com/snk-devcenter/addon-studio)).
+- Índice: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md). Router opção B: [ARCHITECTURE.md](skills/sankhya-addon-sdk2/ARCHITECTURE.md).
 
-No projeto addon: `./install.sh .` copia skills para `.claude/skills/` e agents para `.claude/agents/`.
+No addon: `./install.sh .` copia 26 skills e agents para `.claude/`.
