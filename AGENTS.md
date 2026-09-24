@@ -6,4 +6,4 @@ Catálogo **skillforge** (GET + DevCenter addon-studio).
 2. **Skills granulares** — após `./install.sh`, use pastas em `.codex/skills/` (ou invoque `$entity`, `$database`, …). Lista: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md).
 3. **Sub-agents** — `.codex/agents/*.toml` (entity-architect, dbscript-builder, …).
 
-No repositório skillforge (sem install): submódulos em `skills/sankhya-addon-sdk2` e `external/addon-studio/plugins/addon-studio/`.
+No repositório skillforge (sem install): `skills/sankhya-addon-sdk2` (submódulo) e `vendor/addon-studio/` (cópia).

@@ -5,7 +5,7 @@ Duas fontes complementares — **não** duplicam o mesmo papel.
 | Fonte | Onde | Quantidade | Papel |
 | --- | --- | --- | --- |
 | **GET** [sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2) | `skills/sankhya-addon-sdk2` | 1 skill (`sankhya-addon-sdk`) + `references/` | Entrada única SDK Addon Studio **2.0.18+**: AutoDD, `@Controller`, ORM, repositório, doc oficial expandida (ex.: sub-abas nativas) |
-| **DevCenter** [addon-studio](https://github.com/snk-devcenter/addon-studio) | `external/addon-studio` | 25 skills + 6 agents | Skills **granulares** validadas contra jars do SDK; telas XML, dbscript, Retrofit, JSP, jobs, etc. |
+| **DevCenter** [addon-studio](https://github.com/snk-devcenter/addon-studio) | `vendor/addon-studio/` (**incorporado**) | 25 skills + 6 agents | Skills granulares (XML, dbscript, Retrofit, JSP, jobs, …) |
 
 Total instalado no addon: **26 skills** + **6 agents**.
 
@@ -50,6 +50,6 @@ Instalados em `.cursor/agents/`, `.claude/agents/`, `.codex/agents/` (Codex: `.t
 
 ```sh
 git submodule update --remote skills/sankhya-addon-sdk2
-git submodule update --remote external/addon-studio
+# addon-studio: atualizar cópia em vendor/ — ver vendor/addon-studio/README.md
 ./install.sh /caminho/do/addon   # ou ~
 ```

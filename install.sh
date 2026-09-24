@@ -7,17 +7,16 @@ if [ "${1:-}" = "" ]; then
   echo ""
   echo "Instala:"
   echo "  - sankhya-addon-sdk (submódulo skills/sankhya-addon-sdk2)"
-  echo "  - 25 skills addon-studio (submódulo external/addon-studio)"
-  echo "  - 6 agents addon-studio (Cursor/Claude .md + Codex .toml)"
+  echo "  - 25 skills addon-studio (vendor/addon-studio/skills — cópia incorporada)"
+  echo "  - 6 agents addon-studio (vendor/addon-studio/agents)"
   exit 1
 fi
 
 TARGET=$1
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 SDK_SRC="$ROOT/skills/sankhya-addon-sdk2"
-STUDIO_ROOT="$ROOT/external/addon-studio/plugins/addon-studio"
-STUDIO_SKILLS="$STUDIO_ROOT/skills"
-STUDIO_AGENTS="$STUDIO_ROOT/agents"
+STUDIO_SKILLS="$ROOT/vendor/addon-studio/skills"
+STUDIO_AGENTS="$ROOT/vendor/addon-studio/agents"
 STUDIO_CODEX_AGENTS="$STUDIO_AGENTS/codex"
 
 if [ ! -f "$SDK_SRC/SKILL.md" ]; then
@@ -27,8 +26,7 @@ if [ ! -f "$SDK_SRC/SKILL.md" ]; then
 fi
 
 if [ ! -d "$STUDIO_SKILLS/entity" ]; then
-  echo "Submódulo external/addon-studio ausente."
-  echo "Rode: git submodule update --init --recursive"
+  echo "Cópia vendor/addon-studio/skills ausente."
   exit 1
 fi
 
@@ -48,7 +46,7 @@ install_skill_dir() {
 echo "→ sankhya-addon-sdk (GET / SDK 2.0 + references/)"
 install_skill_dir "$SDK_SRC" "sankhya-addon-sdk"
 
-echo "→ addon-studio (25 skills snk-devcenter/addon-studio)"
+echo "→ addon-studio (25 skills — origem snk-devcenter/addon-studio)"
 for skill_path in "$STUDIO_SKILLS"/*/; do
   [ -f "${skill_path}SKILL.md" ] || continue
   skill_name=$(basename "$skill_path")

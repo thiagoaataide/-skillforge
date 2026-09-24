@@ -1,50 +1,30 @@
 # skillforge
 
-Catálogo de **agent skills** para addons Sankhya e frentes relacionadas (Cursor, Claude Code, Codex).
+Catálogo de **agent skills** para addons Sankhya (Cursor, Claude Code, Codex).
 
-| Pacote | Repositório | Caminho no catálogo |
+| Pacote | Origem | No skillforge |
 | --- | --- | --- |
-| SDK GET (entrada + doc expandida) | [GRUPO-GET/sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2) | `skills/sankhya-addon-sdk2` |
-| Addon Studio DevCenter (25 skills + 6 agents) | [snk-devcenter/addon-studio](https://github.com/snk-devcenter/addon-studio) | `external/addon-studio` |
+| SDK GET | [GRUPO-GET/sankhya-addon-sdk2](https://github.com/GRUPO-GET/sankhya-addon-sdk2) | **Submódulo** `skills/sankhya-addon-sdk2` |
+| Addon Studio DevCenter | [snk-devcenter/addon-studio](https://github.com/snk-devcenter/addon-studio) | **Cópia incorporada** em `vendor/addon-studio/` (25 skills + 6 agents) |
 
-**Total:** 26 skills + 6 agents após `./install.sh`. Detalhes e “quando usar qual”: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md).
+A cópia do addon-studio traz atribuição em [vendor/addon-studio/README.md](vendor/addon-studio/README.md) e não depende do repo público estar online. **Total instalado:** 26 skills + 6 agents. Catálogo: [docs/SKILLS-CATALOG.md](docs/SKILLS-CATALOG.md).
 
 ## Clone
 
 ```sh
 git clone --recurse-submodules git@github.com:GRUPO-GET/skillforge.git
 cd skillforge
+git submodule update --init skills/sankhya-addon-sdk2
 ```
 
-Sem submódulos no clone:
-
-```sh
-git submodule update --init --recursive
-```
-
-## Instalar no addon (ou global)
+## Instalar
 
 ```sh
 chmod +x install.sh
 ./install.sh /caminho/do/seu-addon
-# global Cursor/Claude/Codex na sua máquina:
+# ou global:
 ./install.sh ~
 ```
-
-Copia para `.cursor/skills/`, `.claude/skills/`, `.codex/skills/`:
-
-- `sankhya-addon-sdk` (GET)
-- 25 pastas do [addon-studio](https://github.com/snk-devcenter/addon-studio) (`entity`, `database`, `retrofit`, `mapstruct`, …)
-
-E agents para `.cursor/agents/`, `.claude/agents/`, `.codex/agents/` (Codex: `.toml`).
-
-## Uso rápido
-
-| Agent | Invocação |
-| --- | --- |
-| GET SDK | `/sankhya-addon-sdk` ou pedido em linguagem natural “padrão SDK 2.0” |
-| Studio | `/entity`, `/database`, … ou Codex `$controller` |
-| Especialista | “Use o entity-architect para …” |
 
 ## Atualizar
 
@@ -52,20 +32,11 @@ E agents para `.cursor/agents/`, `.claude/agents/`, `.codex/agents/` (Codex: `.t
 git pull
 git submodule update --init --recursive
 git submodule update --remote skills/sankhya-addon-sdk2
-git submodule update --remote external/addon-studio
 ./install.sh /caminho/do/seu-addon
 ```
 
-Edite a skill GET no repo **sankhya-addon-sdk2**. Skills DevCenter: upstream **addon-studio** (submódulo).
-
-## Publicar (maintainers)
-
-```sh
-./scripts/push-github.sh
-```
-
-Remotes: `grupo-get` → GRUPO-GET/skillforge; espelho `thiago` → thiagoaataide/-skillforge (se configurado).
+Para refrescar a cópia DevCenter a partir do GitHub público, siga [vendor/addon-studio/README.md](vendor/addon-studio/README.md).
 
 ## Licença
 
-MIT (catálogo). Respeite licenças dos submódulos (addon-studio MIT).
+MIT (catálogo). Addon Studio incorporado: MIT — ver `vendor/addon-studio/LICENSE.upstream`.
